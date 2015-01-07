@@ -1,0 +1,14 @@
+{
+  "name": "site-data",
+  "author": "Brandon L. Clark",
+  "description": "Default data sets to be used for the site-template project.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "index.js",
+  "private": true,
+  "dependencies": {
+    "site-auth": "^0.1.0",
+    "site-user": "^0.1.0",
+    "site-secure": "^0.1.0"
+  }
+}
