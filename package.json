@@ -7,8 +7,8 @@
   "main": "index.js",
   "private": true,
   "dependencies": {
-    "site-auth": "^0.1.0",
-    "site-user": "^0.1.0",
-    "site-secure": "^0.1.0"
+    "site-auth": "BClark-Grad-Project/site-auth",
+    "site-user": "BClark-Grad-Project/site-user",
+    "site-secure": "BClark-Grad-Project/site-secure"
   }
 }
