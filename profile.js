@@ -59,11 +59,13 @@ module.exports.read = function(id, cb){
 module.exports.verify = function(sess, credential, cb){
 	console.log('site-data', credential);
 	var profile = {};
+	var search = {};
 	var remember = credential.remember;
-	delete credential.remember;
+	search.user = credential.user;
+	search.password = credential.password;
 	
 	// Attempt authentication
-	Auth.verify(credential, function(err, user){
+	Auth.verify(search, function(err, user){
 		if(err){return cb(err, null);}
 		
 		// If verified get account detail.
