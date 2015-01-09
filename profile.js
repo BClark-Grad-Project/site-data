@@ -23,7 +23,8 @@ module.exports.create = function(sess, userObj, cb){
 		
 		// Use new Authentication ID to create profile detail.
 		info.id = user.id;
-		info = merge(userObj.detail, userObj.contact);
+		info.contact = userObj.contact;
+		info.detail = userObj.detail;
 		User.create(info, function(err, detail){
 			if(err){return cb(err, null);}
 			
