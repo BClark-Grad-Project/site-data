@@ -59,8 +59,8 @@ module.exports.read = function(id, cb){
 module.exports.verify = function(sess, credential, cb){
 	console.log('site-data', credential);
 	var profile = {};
-	var remember = credentials.remember;
-	delete credentials.remember;
+	var remember = credential.remember;
+	delete credential.remember;
 	
 	// Attempt authentication
 	Auth.verify(credential, function(err, user){
