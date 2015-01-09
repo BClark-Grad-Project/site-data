@@ -13,13 +13,13 @@ var merge = function(obj1,obj2){
 module.exports.create = function(sess, userObj, cb){	
 	console.log('site-data', userObj);
 	var profile = {};
-	var credentials, info;
+	var credentials = {};
+	var info = {};
 	
 	// Create new authentication profile.
 	credentials = userObj.credentials;
 	auth.create(credentials, function(err, user){
 		if(err){return cb(err, null);}
-		console.log('site-data:created', user);
 		
 		// Use new Authentication ID to create profile detail.
 		info.id = user.id;
