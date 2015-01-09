@@ -19,8 +19,8 @@ module.exports.secure = secure;
 module.exports.user   = user; 
 module.exports.auth   = auth;
 
-// Overloaded to secure data exchange. Binds (auth, secure, user).
-module.exports.auth.create = function(sess, userObj, cb){	
+// Binds (auth, secure, user).
+module.exports.profile.create = function(sess, userObj, cb){	
 	console.log('site-data', userObj);
 	var profile = {};
 	var credentials, info;
@@ -46,7 +46,7 @@ module.exports.auth.create = function(sess, userObj, cb){
 };
 
 
-module.exports.user.read = function(id, cb){
+module.exports.profile.read = function(id, cb){
 	console.log('site-data', id);
 	var profile = {};
 	
@@ -64,7 +64,7 @@ module.exports.user.read = function(id, cb){
 };
 
 
-module.exports.auth.verify = function(sess, credential, cb){
+module.exports.profile.verify = function(sess, credential, cb){
 	console.log('site-data', credentials);
 	var profile = {};
 	var remember = credentials.remember;
@@ -90,7 +90,7 @@ module.exports.auth.verify = function(sess, credential, cb){
 	});
 };
 
-module.exports.user.update = function(sess, userObj, cb){
+module.exports.profile.update = function(sess, userObj, cb){
 	console.log('site-data', userObj);
 	var profile = {};
    
@@ -110,7 +110,7 @@ module.exports.user.update = function(sess, userObj, cb){
 	});
 };
 
-module.exports.auth.remove = function(sess, id, cb){	
+module.exports.profile.remove = function(sess, id, cb){	
 	console.log('site-data', id);
 	// Deactivate account.
 	auth.remove(id, function(err, user){
