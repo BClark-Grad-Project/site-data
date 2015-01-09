@@ -88,20 +88,39 @@ module.exports.update = function(sess, userObj, cb){
 	console.log('site-data', userObj);
 	var profile = {};
    
-	Auth.update(userObj, function(err, user){
-		if(err){return cb(err, null);}
-		
+	if(userObj.credentials){
+		Auth.update(userObj, function(err, user){
+			if(err){return cb(err, null);}
+			if(userObj.detail || userObj.contact){
+				User.update(userObj, function(err, detail){
+					if(err){return cb(err, null);}
+			
+					// Update registered session.
+					profile = merge(user, detail);
+					profile = merge(sess.user, profile);
+					sess.user = profile;
+					
+					return cb(null, profile);
+				});
+			} else {
+				// Update registered session.
+				profile = merge(sess.user, user);
+				sess.user = profile;
+				
+				return cb(null, profile);
+			}
+		});
+	} else if(userObj.detail || userObj.contact){
 		User.update(userObj, function(err, detail){
 			if(err){return cb(err, null);}
 	
 			// Update registered session.
-			profile = merge(user, detail);
-			profile = merge(sess.user, profile);
+			profile = merge(sess.user, detail);
 			sess.user = profile;
 			
 			return cb(null, profile);
 		});
-	});
+	}
 };
 
 module.exports.remove = function(sess, id, cb){	
