@@ -87,6 +87,7 @@ module.exports.verify = function(sess, credential, cb){
 module.exports.update = function(sess, userObj, cb){
 	console.log('site-data', userObj);
 	var profile = {};
+	var info = {};
    
 	if(userObj.credentials){
 		Auth.update(userObj, function(err, user){
@@ -96,8 +97,8 @@ module.exports.update = function(sess, userObj, cb){
 					if(err){return cb(err, null);}
 			
 					// Update registered session.
-					profile = merge(user, detail);
-					profile = merge(sess.user, profile);
+					info = merge(user, detail);
+					profile = merge(sess.user, info);
 					sess.user = profile;
 					
 					return cb(null, profile);
