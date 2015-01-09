@@ -57,7 +57,7 @@ module.exports.read = function(id, cb){
 
 
 module.exports.verify = function(sess, credential, cb){
-	console.log('site-data', credentials);
+	console.log('site-data', credential);
 	var profile = {};
 	var remember = credentials.remember;
 	delete credentials.remember;
@@ -67,7 +67,7 @@ module.exports.verify = function(sess, credential, cb){
 		if(err){return cb(err, null);}
 		
 		// If verified get account detail.
-		User.read({_id: user.id}, function(err, detail){
+		User.read(user.id, function(err, detail){
 			if(err){return cb(err, null);}
 			
 			// Register session.
