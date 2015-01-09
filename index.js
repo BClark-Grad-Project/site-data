@@ -64,6 +64,8 @@ module.exports.user.read = function(id, cb){
 
 module.exports.auth.verify = function(sess, credential, cb){
 	var profile = {};
+	var remember = credentials.remember;
+	delete credentials.remember;
 	
 	// Attempt authentication
 	auth.verify(credential, function(err, user){
@@ -76,6 +78,9 @@ module.exports.auth.verify = function(sess, credential, cb){
 			// Register session.
 			profile = merge(user, detail);
 			sess.user = profile;
+			if(remember){
+				// TODO Is there a better way than extending time?
+			}
 			
 			return cb(null, profile);
 		});
@@ -84,7 +89,7 @@ module.exports.auth.verify = function(sess, credential, cb){
 
 module.exports.user.update = function(sess, userObj, cb){
 	var profile = {};
-
+   
 	auth.update(userObj, function(err, user){
 		if(err){return cb(err, null);}
 		
