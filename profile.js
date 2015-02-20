@@ -63,7 +63,7 @@ module.exports.verify = function(sess, credential, cb){
 		if(err){return cb(err, null);}
 		
 		// If verified get account detail.
-		User.read({id:user.id}, function(err, detail){
+		User.read({_id:user.id}, function(err, detail){
 			if(err){return cb(err, null);}
 			
 			// Register session.
