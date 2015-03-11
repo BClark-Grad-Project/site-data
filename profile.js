@@ -59,9 +59,16 @@ module.exports.read = function(id, cb){
 module.exports.verify = function(sess, credential, cb){
 	var profile = {};
 	var search = {};
-	var remember = credential.remember;
-	search.user = credential.user;
-	search.password = credential.password;
+	var remember = {};
+	var social = credential.social ? credential.social : undefined;
+	
+	if(social){
+		search.social = social;
+	} else {	
+		remember = credential.remember;
+		search.user = credential.user;
+		search.password = credential.password;
+	}
 	
 	// Attempt authentication
 	Auth.verify(search, function(err, user){
