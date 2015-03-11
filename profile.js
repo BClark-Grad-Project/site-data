@@ -13,9 +13,14 @@ var merge = function(obj1,obj2){
 module.exports.create = function(sess, userObj, cb){	
 	var profile = {};
 	var info = {};
-	
+	var newAuth = {};
+	newAuth.credentials   = userObj.credentials; 
+	newAuth.authorization = userObj.authorization;
+	if(userObj.social){
+		newAuth.social = userObj.social;
+	}
 	// Create new authentication profile.
-	Auth.create({credentials:userObj.credentials, authorization:userObj.authorization}, function(err, user){
+	Auth.create(newAuth, function(err, user){
 		if(err){return cb(err, null);}
 		
 		// Use new Authentication ID to create profile detail.
