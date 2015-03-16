@@ -21,21 +21,23 @@ module.exports.create = function(sess, userObj, cb){
 	}
 	// Create new authentication profile.
 	Auth.create(newAuth, function(err, user){
-		if(err){return cb(err, null);}
-		
-		// Use new Authentication ID to create profile detail.
-		info.id = user.id;
-		info.contact = userObj.contact;
-		info.detail = userObj.detail;
-		User.create(info, function(err, detail){
-			if(err){return cb(err, null);}
-			
-			// Register session.
-			profile = merge(user, detail);
-			sess.user = profile;
-			
-			return cb(null, profile);
-		});
+		if(err){
+			return cb(err, userObj);
+		} else {		
+			// Use new Authentication ID to create profile detail.
+			info.id = user.id;
+			info.contact = userObj.contact;
+			info.detail = userObj.detail;
+			User.create(info, function(err, detail){
+				if(err){return cb(err, null);}
+				
+				// Register session.
+				profile = merge(user, detail);
+				sess.user = profile;
+				
+				return cb(null, profile);
+			});
+		}
 	});
 };
 
