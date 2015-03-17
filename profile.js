@@ -19,7 +19,7 @@ module.exports.create = function(sess, userObj, cb){
 		newAuth.id = userObj.id;
 	}
 	if(userObj.email){
-		newAuth.id = userObj.email;
+		newAuth.email = userObj.email;
 	}
 	newAuth.credentials   = userObj.credentials; 
 	newAuth.authorization = userObj.authorization;
