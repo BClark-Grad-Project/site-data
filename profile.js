@@ -14,6 +14,13 @@ module.exports.create = function(sess, userObj, cb){
 	var profile = {};
 	var info = {};
 	var newAuth = {};
+
+	if(userObj.id){
+		newAuth.id = userObj.id;
+	}
+	if(userObj.email){
+		newAuth.id = userObj.email;
+	}
 	newAuth.credentials   = userObj.credentials; 
 	newAuth.authorization = userObj.authorization;
 	if(userObj.social){
