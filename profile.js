@@ -21,8 +21,12 @@ module.exports.create = function(sess, userObj, cb){
 	if(userObj.email){
 		newAuth.email = userObj.email;
 	}
-	newAuth.credentials   = userObj.credentials; 
-	newAuth.authorization = userObj.authorization;
+	if(userObj.credentials){
+		newAuth.credentials   = userObj.credentials; 
+	}
+	if(userObj.authorization){
+		newAuth.authorization = userObj.authorization;
+	}
 	if(userObj.social){
 		newAuth.social = userObj.social;
 	}
@@ -39,15 +43,27 @@ module.exports.create = function(sess, userObj, cb){
 			if(userObj.detail){
 				info.detail = userObj.detail;
 			}
-			User.create(info, function(err, detail){
-				if(err){return cb(err, userObj);}
-				
-				// Register session.
-				profile = merge(user, detail);
-				sess.user = profile;
-				
-				return cb(null, profile);
-			});
+			if(userObj.credentials){
+				User.create(info, function(err, detail){
+					if(err){return cb(err, userObj);}
+					
+					// Register session.
+					profile = merge(user, detail);
+					sess.user = profile;
+					
+					return cb(null, profile);
+				});
+			} else {
+				Auth.read({id:user.id}, function(err, detail){
+					if(err){return cb(err, userObj);}
+					
+					// Register session.
+					profile = merge(user, detail);
+					sess.user = profile;
+					
+					return cb(null, profile);
+				});
+			}
 		}
 	});
 };
