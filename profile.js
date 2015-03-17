@@ -33,10 +33,14 @@ module.exports.create = function(sess, userObj, cb){
 		} else {		
 			// Use new Authentication ID to create profile detail.
 			info.id = user.id;
-			info.contact = userObj.contact;
-			info.detail = userObj.detail;
+			if(userObj.contact){
+				info.contact = userObj.contact;
+			}
+			if(userObj.detail){
+				info.detail = userObj.detail;
+			}
 			User.create(info, function(err, detail){
-				if(err){return cb(err, null);}
+				if(err){return cb(err, userObj);}
 				
 				// Register session.
 				profile = merge(user, detail);
