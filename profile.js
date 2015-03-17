@@ -44,6 +44,7 @@ module.exports.create = function(sess, userObj, cb){
 				info.detail = userObj.detail;
 			}
 			if(userObj.credentials){
+				console.log('creating user detail');
 				User.create(info, function(err, detail){
 					if(err){return cb(err, userObj);}
 					
@@ -54,7 +55,8 @@ module.exports.create = function(sess, userObj, cb){
 					return cb(null, profile);
 				});
 			} else {
-				Auth.read({id:user.id}, function(err, detail){
+				console.log('getting user detail');
+				User.read(user.id, function(err, detail){
 					if(err){return cb(err, userObj);}
 					
 					// Register session.
