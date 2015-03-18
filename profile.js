@@ -46,10 +46,13 @@ module.exports.create = function(sess, userObj, cb){
 			if(userObj.credentials){
 				console.log('creating user detail');
 				User.create(info, function(err, detail){
+					console.log('created detail', detail);
 					if(err){return cb(err, userObj);}
 					
 					// Register session.
 					profile = merge(user, detail);
+
+					console.log('merged user and detail', profile);
 					sess.user = profile;
 					
 					return cb(null, profile);
