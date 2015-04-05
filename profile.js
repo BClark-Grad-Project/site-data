@@ -21,6 +21,9 @@ module.exports.create = function(sess, userObj, cb){
 	if(userObj.email){
 		newAuth.email = userObj.email;
 	}
+	if(userObj.password){
+		newAuth.password = userObj.password;
+	}
 	if(userObj.credentials){
 		newAuth.credentials   = userObj.credentials; 
 	}
