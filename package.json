@@ -2,7 +2,7 @@
   "name": "site-data",
   "author": "Brandon L. Clark",
   "description": "Default data sets to be used for the site-template project.",
-  "version": "0.2.0",
+  "version": "9.1.0",
   "license": "MIT",
   "main": "index.js",
   "private": true,
@@ -11,6 +11,6 @@
     "site-user": "BClark-Grad-Project/site-user",
     "site-secure": "BClark-Grad-Project/site-secure",
     "site-blog": "BClark-Grad-Project/site-blog",
-    "site-projects": "BClark-Grad-Project/site-projects"
+    "site-survey": "BClark-Grad-Project/site-survey"
   }
 }
