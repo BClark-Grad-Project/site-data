@@ -9,6 +9,7 @@ var auth    = require('site-auth');     // General authorization data functions
 var user    = require('site-user');     // General user data functions
 var profile = require('./profile');     // Data granting and profile data management
 var blog    = require('site-blog');     // General blog data functions
+var survey  = require('site-survey');   // Survey Management data functions
 var api     = require('site-api');      // API Management data functions
 
 // User Management
@@ -21,4 +22,5 @@ module.exports.profile = profile;
 module.exports.blog    = blog;
 
 // Project Management
-module.exports.api = api
+module.exports.survey = survey;
+module.exports.api = api;
